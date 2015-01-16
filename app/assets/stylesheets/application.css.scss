@@ -2,5 +2,25 @@
  @import "bootstrap";
 
  body {
-   padding-top: 50px;
+   padding-top: 60px;
  }
+
+ .lead {
+   font-size: 21px;
+ }
+
+ .img-footer {
+   max-width: 2em;
+   max-height: 2em;
+   margin-right: .5em;
+ }
+
+ footer {
+   padding-bottom: 1em;
+ }
+
+
+ .panel-body {
+   padding: 15px;
+ }
+ 
