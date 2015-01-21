@@ -22,18 +22,6 @@
       </div>
     </nav>
 
-    <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="container">
-    <div class="jumbotron">
-
-        <h1>gCamp
-        </h1>
-        <p>Your life, organized.</p>
-
-      </div>
-
-    </div> <!-- /container -->
-
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -47,14 +35,16 @@
 <%= yield %>
 
 
+<footer>
+<div class= "container">
   <div class="row">
     <div class="col-md-6">
-      <a href="/about">About</a>
-        |
-      <a href="/terms">Terms</a>
-        |
-      <a href="/faq">FAQ</a>
-        |
+      <%= link_to "About", about_path %>
+      |
+      <%= link_to "Terms", terms_path %>
+      |
+      <%= link_to "FAQ", faq_path %>
+      |
       <a href="/tasks">Tasks</a>
     </div>
     <div class="col-md-6 text-right">
@@ -69,7 +59,7 @@
     </div>
   </div>
 </div>
-<footer>
 </footer>
+</div>
 </body>
 </html>
