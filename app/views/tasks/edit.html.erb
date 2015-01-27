@@ -1,11 +1,20 @@
-<div class= "container">
 
-<h1>Editing Task</h1>
+
+<h1>Edit Task</h1>
+
+<ol class="breadcrumb">
+  <li><a href="/tasks">Tasks</a>
+  <li><class="active">New Task</li>
+</ol>
+
+
+
+<div class="checkbox">
+  <label>
+    <input type="checkbox"> Complete
+  </label>
+</div>
+
+
 
 <%= render 'form' %>
-
-<%= link_to 'Show', @task %> |
-<%= link_to 'Back', tasks_path %>
-<br>
-<br>
-<br>
