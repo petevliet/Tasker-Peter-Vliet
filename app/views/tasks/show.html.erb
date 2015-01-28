@@ -22,7 +22,7 @@
 </ol>
 
 <b>Due on:</b>
-  <%= @task.due_date %>
+  <%= @task.due_date.to_s.gsub("-","/") %>
 
 
 <br>
