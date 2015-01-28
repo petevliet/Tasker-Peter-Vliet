@@ -13,6 +13,7 @@
     </div>
   <% end %>
 
+
   <div class="form-group">
     <label class= "control-label col-md-2">
       <%= f.label :description %>
@@ -20,6 +21,9 @@
     <div class= "col-md-4">
       <%= f.text_field :description, class: 'form-control' %>
     </div>
+  </div>
+
+  <div class= "form-group">
     <label class="control-label col-md-2">
       <%= f.label :due_date %>
     </label>
@@ -27,6 +31,20 @@
       <%= f.date_select :due_date, class: 'form-control' %>
     </div>
   </div>
+
+  <% if @task.description != nil %>
+  <div class= "form-group">
+    <label class= "control-label col-md-2">
+      Complete
+    </label>
+  <div class="col-md-4">
+    <div class="checkbox form-controls">
+    <input type="checkbox">
+  </div>
+</div>
+  </div>
+<% end %>
+
   <div class="form-group">
     <div class="actions col-md-offset-2 col-md-4">
       <%= f.submit class: "btn btn-primary" %>

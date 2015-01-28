@@ -1,27 +1,32 @@
 
+<% if flash[:notice] %>
+  <div class="alert alert-success" role="alert">
+    <center><%= notice %></center>
+  </div>
+<% end %>
 
-<div class="alert alert-success" role="alert">
-  <center><%= notice %></center>
-</div>
 
 
-<div class="pull-right">
-  <%= link_to 'Edit', edit_task_path, class: 'btn btn-info' %>
-</div>
-
-<p>
+<div class="page-header">
+  <div class="pull-right">
+    <%= link_to 'Edit', edit_task_path, class: 'btn btn-info' %>
+  </div>
   <h1><strong><%= @task.description %></strong></h1>
-</p>
+</div>
 
+
+<ol class="breadcrumb">
+  <li><a href="/tasks">Tasks</a>
+  <li><class="active"> <%= @task.description %>
+  </li>
+</ol>
+
+<b>Due on:</b>
+  <%= @task.due_date %>
+
+
+<br>
+<br>
+<br>
+<br>
 <hr>
-
-  <ol class="breadcrumb">
-    <li><a href="/tasks">Tasks</a>
-    <li><class="active"> <%= @task.description %>
-    </li>
-  </ol>
-
-<br>
-<br>
-<br>
-<br>
