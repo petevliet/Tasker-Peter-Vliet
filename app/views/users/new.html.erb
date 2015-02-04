@@ -4,40 +4,31 @@
 
 
 <%= form_for(@user, html: {class: 'form-horizontal'}) do |f| %>
-<form class="form-horizontal">
-  <div class="form-group">
-    <label class= "control-label col-md-2">
-      <%= f.label :first_name %>
-    </label>
-    <div class= "col-md-4">
-      <%= f.text_field :first_name, class: 'form-control' %>
-    </div>
-  </div>
 
-  <div class= "form-group">
-    <label class="control-label col-md-2">
-      <%= f.label :last_name %>
-    </label>
-    <div class= "col-md-4">
-      <%= f.text_field :last_name, class: 'form-control' %>
-    </div>
-  </div>
+ <div class="form-group">
+   <%= f.label :first_name, class: "col-md-2" %>
+   <%= f.text_field :first_name, class: "col-md-4" %>
+ </div>
+ <div class="form-group">
+   <%= f.label :last_name, class: "col-md-2" %>
+   <%= f.text_field :last_name, class: "col-md-4" %>
+ </div>
+ <div class="form-group">
+   <%= f.label :email, class: "col-md-2" %>
+   <%= f.email_field :email, class: "col-md-4" %>
+ </div>
 
-  <div class= "form-group">
-    <label class="control-label col-md-2">
-      <%= f.label :email %>
-    </label>
-    <div class= "col-md-4">
-      <%= f.email_field :email, class: 'form-control' %>
-    </div>
-  </div>
-
-
-  <div class="form-group">
-    <div class="actions col-md-offset-2 col-md-4">
-      <%= f.submit class: "btn btn-primary" %>
-      <%= link_to 'Cancel', tasks_path, class: 'btn btn-default' %>
-    </div>
-  </div>
+ <div class="form-group">
+   <div class="col-md-offset-2 col-md-4">
+     <%= f.submit class: "btn btn-primary" %>
+     <%= link_to 'Cancel', users_path, class: 'btn btn-default' %>
+   </div>
+ </div>
 </form>
+
+<br>
+<br>
+<br>
+<br>
+<hr>
 <% end %>
