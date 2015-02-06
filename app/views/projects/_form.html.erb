@@ -1,0 +1,24 @@
+
+<%= form_for(@project, html: {class: 'form-horizontal'}) do |f| %>
+
+ <div class="form-group">
+   <%= f.label :name, class: "col-md-1" %>
+   <%= f.text_field :name, class: "col-md-3" %>
+ </div>
+
+
+ <div class="form-group">
+   <div class="col-md-offset-1 col-md-3">
+     <%= f.submit class: "btn btn-primary" %>
+     <%= link_to 'Cancel', users_path, class: 'btn btn-default' %>
+
+  </div>
+ </div>
+</form>
+
+<br>
+<br>
+<br>
+<br>
+<hr>
+<% end %>
