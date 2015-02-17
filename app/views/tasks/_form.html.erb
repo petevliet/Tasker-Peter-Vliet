@@ -6,23 +6,23 @@
 <form class="form-horizontal">
 
   <% if @task.errors.any? %>
-    <div class= "form-group">
+  <div class= "form-group">
     <div class= "col-md-offset-2 col-md-6">
-    <div id="error_explanation">
-      <div class= "alert alert-danger">
+      <div id="error_explanation">
+        <div class= "alert alert-danger">
           <strong>
             <%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:
           </strong>
-        <br>
-        <br>
-        <ul>
-          <% @task.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-          <% end %>
-        </ul>
+          <br>
+          <br>
+          <ul>
+            <% @task.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
       </div>
     </div>
-  </div>
   </div>
   <% end %>
 
