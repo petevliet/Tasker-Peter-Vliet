@@ -3,29 +3,10 @@
 
 <form class= "form-horizontal">
 
-<% if @project.errors.any? %>
-<div class= "form-group">
-  <div class= "col-md-offset-1 col-md-6">
-    <div id="error_explanation">
-      <div class= "alert alert-danger">
-        <strong>
-          <%= pluralize(@project.errors.count, "error") %> prohibited this task from being saved:
-        </strong>
-        <br>
-        <br>
-        <ul>
-          <% @project.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-          <% end %>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
-<% end %>
+<%= render partial: 'shared/errors', locals: {object: @project} %>
 
 <div class="form-group">
-  <label class= "control-label col-md-1">
+  <label class= "control-label col-md-2">
     <%= f.label :name %>
   </label>
   <div class= "col-md-4">
@@ -35,7 +16,7 @@
 
 
  <div class="form-group">
-   <div class="col-md-offset-1 col-md-3">
+   <div class="col-md-offset-2 col-md-3">
      <%= f.submit class: "btn btn-primary" %>
      <%= link_to 'Cancel', projects_path, class: 'btn btn-default' %>
 
