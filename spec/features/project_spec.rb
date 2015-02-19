@@ -11,6 +11,9 @@ describe 'user can CRUD projects' do
     visit '/projects'
 
     click_on 'New project'
+    click_on 'Create Project'
+    expect(page).to have_content 'prohibited'
+    
       fill_in 'project[name]', with: 'example1'
       click_button 'Create Project'
 
