@@ -1,12 +1,16 @@
 class SessionsController < ApplicationController
 
+  def signin
+    @user = User.find_by(email:params[:email])
+  end
+
   def create
     @user = User.find_by(email:params[:email])
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
       redirect_to '/', notice: 'Welcome!'
     else
-      flash[:alert] = 'something went wrong.'
+      flash[:alert] = 'Username / password combination is invalid. <br>'.html_safe
       render :new
     end
   end

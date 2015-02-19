@@ -1,7 +1,9 @@
  @import "bootstrap-sprockets";
  @import "bootstrap";
 
-
+.alert-red {
+  color: red;
+}
 
  body {
    padding-top: 60px;
