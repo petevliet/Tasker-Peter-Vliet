@@ -37,6 +37,9 @@ describe 'user can CRUD users' do
     click_on 'joe smith'
     click_on 'Edit'
       fill_in 'user[last_name]', with: 'jones'
+      fill_in 'user[password]', with: 'password'
+      fill_in 'user[password_confirmation]', with: 'password'
+    click_on 'Update User'
 
       expect(page).to have_content('User was successfully updated.')
       expect(page).to have_content('jones')
