@@ -3,8 +3,8 @@ default: &default
 
 development:
  <<: *default
- database: gcamp_development
+ database: gCamp_development
 
 test:
  <<: *default
- database: gcamp_test
+ database: gCamp_test
