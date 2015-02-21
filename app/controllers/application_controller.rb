@@ -14,9 +14,10 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate
-    unless current_user flash[:alert]= 'not signed in'
-      redirect_to signin_path
-    end
+      unless current_user
+        redirect_to signin_path
+        flash[:alert]= 'You must be logged in to view this page'
+      end
   end
 
   helper_method :current_user
