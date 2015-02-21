@@ -3,7 +3,21 @@ require 'rails_helper'
 describe 'user can CRUD projects' do
 
   before :each do
-    @project = Project.create(name: 'example')
+
+    visit '/signup'
+      fill_in 'registration[first_name]', with: 'joe'
+      fill_in 'registration[last_name]', with: 'camel'
+      fill_in 'registration[email]', with: 'joe@camel.com'
+      fill_in 'registration[password]', with: 'password'
+      fill_in 'registration[password_confirmation]', with: 'password'
+      click_button 'Sign Up'
+
+      click_on 'Sign In'
+        fill_in 'email', with: 'joe@camel.com'
+        fill_in 'password', with: 'password'
+        click_button 'Sign In'
+
+      Project.create(name: 'example')
   end
 
   it 'user can create a project' do
@@ -13,7 +27,7 @@ describe 'user can CRUD projects' do
     click_on 'New project'
     click_on 'Create Project'
     expect(page).to have_content 'prohibited'
-    
+
       fill_in 'project[name]', with: 'example1'
       click_button 'Create Project'
 
