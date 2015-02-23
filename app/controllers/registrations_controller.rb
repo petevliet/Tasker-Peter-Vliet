@@ -6,10 +6,10 @@ class RegistrationsController < ApplicationController
 
   def create
     @user = Registration.new(registration_params)
-    session[:user_id] = @user.id
 
     if @user.save
-      redirect_to '/', notice: 'New account!'
+      session[:registration_id] = @user.id
+      redirect_to root_path, notice: 'New account!'
     else
       render :new
     end
