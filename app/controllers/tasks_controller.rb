@@ -2,11 +2,16 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   before_action :authenticate
 
+  # before_action @project = Project.find(params[:project_id])
+
   def index
-    @tasks = Task.all
+    @project = Project.find(params[:project_id])
+    @tasks = @project.tasks.all
   end
 
   def show
+    @project = Project.find(params[:project_id])
+    @task = @project.task.find(params[:id])
   end
 
   def new
