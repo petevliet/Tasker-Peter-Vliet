@@ -7,7 +7,7 @@
 
 [View on Heroku](https://safe-cove-9290.herokuapp.com/)
 
-[![Build Status](https://travis-ci.org/petevliet/gCamp-Peter-Vliet.png)]
+[![Build Status](https://travis-ci.org/petevliet/gCamp-Peter-Vliet.png)](https://travis-ci.org/petevliet/gCamp-Peter-Vliet)
 
 * Ruby version
   2.2.0
