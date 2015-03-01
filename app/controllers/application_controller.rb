@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def current_user
-    
+
     if session[:registration_id]
       @current_user ||= Registration.find(session[:registration_id])
     end
@@ -17,6 +17,7 @@ class ApplicationController < ActionController::Base
       flash[:alert]= 'You must be logged in to view this page'
     end
   end
+
 
   helper_method :current_user
 end

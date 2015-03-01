@@ -1,20 +1,36 @@
 
 <div class="page-header">
   <div class="pull-right">
-    <%= link_to 'Edit', edit_task_path, class: 'btn btn-info' %>
+    <%= link_to 'Edit', edit_project_task_path, class: 'btn btn-info' %>
   </div>
   <h1><strong><%= @task.description %></strong></h1>
 </div>
 
 
 <ol class="breadcrumb">
-  <li><a href="/tasks">Tasks</a>
-  <li><class="active"> <%= @task.description %>
+  <li>
+    <%= link_to @project.name, project_path(@project) %>
+  </li>
+  <li>
+    <%= link_to 'Tasks', project_tasks_path(@project) %>
+  </li>
+  <li><class="active">
+    <%= @task.description %>
   </li>
 </ol>
 
 <b>Due on:</b>
-  <%= @task.due_date.to_s.gsub("-","/") %>
+  <%= @task.due_date.strftime("%m/%d/%Y") %>
+<br>
+<br>
+<b>Complete:</b>
+  <%= @task.complete %>
+    <% if @task.complete == nil %>
+      <%= false %>
+    <% end %>
+<br>
+<br>
+<%= link_to 'back', project_tasks_path(@project), class: 'btn btn-default' %>
 
 
 <br>
