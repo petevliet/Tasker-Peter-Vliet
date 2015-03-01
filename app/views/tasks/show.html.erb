@@ -2,6 +2,7 @@
 <div class="page-header">
   <div class="pull-right">
     <%= link_to 'Edit', edit_project_task_path, class: 'btn btn-info' %>
+    <%= link_to 'Delete', project_task_path(@project, @task), class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %>
   </div>
   <h1><strong><%= @task.description %></strong></h1>
 </div>
