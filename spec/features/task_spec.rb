@@ -11,17 +11,13 @@ describe 'user can CRUD tasks' do
       fill_in 'registration[password_confirmation]', with: 'password'
       click_button 'Sign Up'
 
-    click_on 'Sign In'
-      fill_in 'email', with: 'joe@camel.com'
-      fill_in 'password', with: 'password'
-      click_button 'Sign In'
-
-    Task.create(description: 'example')
+    Project.create(name: 'example', id: 1)
+    Task.create(description: 'example-old', project_id: 1, complete: false, due_date: '2015-04-10')
   end
 
   it 'user can create a task' do
 
-    visit '/tasks'
+    visit '/projects/1/tasks'
 
     click_on 'New Task'
     click_on 'Create Task'
@@ -34,32 +30,31 @@ describe 'user can CRUD tasks' do
 
   end
 
-  scenario 'user can view project task page' do
+  it 'user can view project task page' do
 
-    visit '/tasks'
+    visit '/projects/1/tasks'
 
-    click_on 'example'
+    click_on 'Show'
 
-    expect(page).to have_content('Due on')
+    expect(page).to have_content('Due')
 
   end
 
-  scenario 'user can update project information' do
+  it 'user can update project information' do
 
-    visit '/tasks'
+    visit '/projects/1/tasks'
 
-    click_on 'example'
     click_on 'Edit'
-      fill_in 'task[description]', with: 'example_new'
+      fill_in 'task[description]', with: 'example-new'
     click_on 'Update Task'
 
       expect(page).to have_content('Task was successfully updated.')
 
   end
 
-  scenario 'user can delete task' do
+  it 'user can delete task' do
 
-    visit '/tasks'
+    visit '/projects/1/tasks'
     click_on 'Delete'
 
     expect(page).to have_content('Task was successfully destroyed.')

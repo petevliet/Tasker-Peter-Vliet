@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20150227220127) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.date     "due_date"
-    t.boolean  "complete", null: false
+    t.boolean  "complete"
     t.integer  "project_id"
   end
 

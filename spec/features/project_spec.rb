@@ -12,11 +12,6 @@ describe 'user can CRUD projects' do
       fill_in 'registration[password_confirmation]', with: 'password'
       click_button 'Sign Up'
 
-      click_on 'Sign In'
-        fill_in 'email', with: 'joe@camel.com'
-        fill_in 'password', with: 'password'
-        click_button 'Sign In'
-
       Project.create(name: 'example')
   end
 
