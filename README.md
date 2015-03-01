@@ -7,6 +7,8 @@
 
 [View on Heroku](https://safe-cove-9290.herokuapp.com/)
 
+[![Master Status](https://travis-ci.org/petevliet/gCamp-Peter-Vliet)]
+
 * Ruby version
   2.2.0
 
