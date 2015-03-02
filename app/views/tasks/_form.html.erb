@@ -1,41 +1,37 @@
-
 <%= form_for [@project, @task], html: {class: 'form-horizontal'} do |f| %>
-
   <%= render partial: 'shared/errors', locals: {object: @task} %>
-
-  <div class="form-group">
-    <label class= "control-label col-md-2">
-      <%= f.label :description %>
-    </label>
-    <div class= "col-md-4">
-      <%= f.text_field :description, class: 'form-control' %>
+    <div class="form-group">
+      <label class= "control-label col-md-2">
+        <%= f.label :description %>
+      </label>
+      <div class= "col-md-4">
+        <%= f.text_field :description, class: 'form-control' %>
+      </div>
     </div>
-  </div>
-
-  <div class= "form-group">
-    <label class="control-label col-md-2">
-      <%= f.label :due_date %>
-    </label>
-    <div class= "col-md-4">
-      <%= f.date_select :due_date, class: 'form-control' %>
+    <div class= "form-group">
+      <label class="control-label col-md-2">
+        <%= f.label :due_date %>
+      </label>
+      <div class= "col-md-4">
+        <%= f.date_select :due_date, class: 'form-control' %>
+      </div>
     </div>
-  </div>
 
-  <% if @task.description != nil %>
-  <div class= "form-group">
-    <label class= "control-label col-md-2">
-      Complete
-    </label>
-  <div class="col-md-4">
-    <%= f.check_box(:complete) %>
-</div>
-  </div>
-<% end %>
-
-  <div class="form-group">
-    <div class="actions col-md-offset-2 col-md-4">
-      <%= f.submit class: "btn btn-primary" %>
-      <%= link_to 'Cancel', project_tasks_path(@project), class: 'btn btn-default' %>
+    <% if @task.description != nil %>
+    <div class= "form-group">
+      <label class= "control-label col-md-2">
+        Complete
+      </label>
+      <div class="col-md-4">
+        <%= f.check_box(:complete) %>
+      </div>
     </div>
-  </div>
+    <% end %>
+
+    <div class="form-group">
+      <div class="actions col-md-offset-2 col-md-4">
+        <%= f.submit class: "btn btn-primary" %>
+        <%= link_to 'Cancel', project_tasks_path(@project), class: 'btn btn-default' %>
+      </div>
+    </div>
 <% end %>

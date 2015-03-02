@@ -10,14 +10,10 @@
 <br>
 <ol class="breadcrumb">
   <li> <%= link_to 'Projects', projects_path %>
-  <li><class="active"> <%= @project.name %>
+  <li><class="active">
+    <%= @project.name %>
   </li>
 </ol>
 <br>
 <br>
   <%= link_to pluralize(@project.tasks.count, "Task"), project_tasks_path(@project) %>
-<br>
-<br>
-<br>
-<br>
-<hr>

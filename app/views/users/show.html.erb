@@ -1,9 +1,7 @@
-
 <div class="page-header">
   <div class="pull-right">
     <%= link_to 'Edit', edit_user_path, class: 'btn btn-info' %>
   </div>
-
   <h1><%= @user.fullname %></h1>
 </div>
 
@@ -13,10 +11,4 @@
   <dt>Last name: </dt> <dd><%= @user.last_name %></dd>
   <br>
   <dt>Email: </dt> <dd><%= mail_to @user.email %></dd>
-
 </dl>
-<br>
-<br>
-<br>
-<br>
-<hr>

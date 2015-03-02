@@ -1,15 +1,13 @@
-
 <div class="page-header">
-<h1>Create a new task</h1>
+  <h1>Create a new task</h1>
 </div>
 
 <ol class="breadcrumb">
-  <li><a href="/tasks">Tasks</a>
-  <li><class="active"> New Task
+  <li><%= link_to @project.name, project_path(@project) %>
+  <li><class="active">
+    New Task
   </li>
 </ol>
-
 <br>
-<%= render 'form' %>
 
-<hr>
+<%= render 'form' %>
