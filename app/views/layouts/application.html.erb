@@ -36,7 +36,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
-<div class="container">
+  <div class="container">
 
   <% if flash[:notice] %>
     <div class="alert alert-success" role="alert">
@@ -46,8 +46,11 @@
 
 <%= yield %>
 
-</div>
-
+  </div>
+<br>
+<br>
+<br>
+<br>
 <footer>
 <div class= "container">
   <hr>
@@ -64,8 +67,7 @@
       <%= link_to "Projects", projects_path %>
     </div>
     <div class="col-md-6 text-right">
-      <a href = "https://www.linkedin.com/in/petervliet">
-        <%= image_tag 'linkedin.jpg', class: "img-footer" %>
+        <%= link_to image_tag('linkedin.jpg', class: "img-footer"), "https://www.linkedin.com/in/petervliet" %>
       <a href = "https://github.com/petevliet">
         <%= image_tag 'github.png', class: "img-footer" %>
       <a href="https://twitter.com/Pete_Vliet">

@@ -6,14 +6,13 @@
 }
 
 footer {
-  position: fixed;
-  bottom: 0;
+  padding-bottom: 1em;
   width: 100%;
 }
 
- body {
-   padding-top: 60px;
- }
+body {
+  padding-top: 60px;
+}
 
  .lead {
    font-size: 21px;
@@ -24,11 +23,6 @@ footer {
    max-height: 2em;
    margin-right: .5em;
  }
-
- footer {
-   padding-bottom: 1em;
- }
-
 
  .panel-body {
    padding: 15px;
