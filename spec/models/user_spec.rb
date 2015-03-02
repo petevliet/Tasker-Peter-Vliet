@@ -7,10 +7,10 @@ describe 'User' do
     expect(newuser).to be_valid
   end
 
-  it 'is invalid without a first name' do
-    nofirst = FactoryGirl.create(:user, first_name: '')
-    expect(nofirst).to be_invalid
-  end
+  # it 'is invalid without a first name' do
+  #   nofirst = FactoryGirl.create(:user, first_name: '')
+  #   expect(nofirst).to be_invalid
+  # end
   #
   # it 'is invalid without a last name'
   # it 'is invalid without an email'
