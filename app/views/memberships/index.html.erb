@@ -27,7 +27,16 @@
   <% end %>
 </div>
 
+<div class= "form-inline">
 <% @memberships.each do |membership| %>
-  <br>
+  <%= form_for [@project, membership] do |f| %>
+  <div class="form-group col-md-3">
     <%= link_to membership.user.fullname, user_path(membership.user) %>
+  </div>
+  <div class="form-group col-md-4">
+    <%= f.select(:role, Membership.roles.keys.map {|role| [role.titleize,role]}, {include_blank: false}, {class: "form-control"}) %>
+  </div>
+  <%= f.submit 'Update', class: 'btn btn-sm btn-primary' %><br><br>
   <% end %>
+<% end %>
+</div>
