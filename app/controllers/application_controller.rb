@@ -7,8 +7,6 @@ class ApplicationController < ActionController::Base
 
     if session[:registration_id]
       @current_user ||= Registration.find(session[:registration_id])
-    else
-      Registration.id = 1
     end
 
   end
