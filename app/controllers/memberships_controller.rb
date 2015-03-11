@@ -1,13 +1,12 @@
 class MembershipsController < ApplicationController
+  before_action :set_project
 
   def index
-    @project = Project.find(params[:project_id])
     @membership = Membership.new
     @memberships = @project.memberships.all
   end
 
   def create
-    @project = Project.find(params[:project_id])
     @membership = Membership.new(membership_params)
     @membership.project_id = @project.id
 
@@ -20,7 +19,6 @@ class MembershipsController < ApplicationController
   end
 
   def update
-    @project = Project.find(params[:project_id])
     @membership = Membership.find(params[:id])
     if @membership.update(membership_params)
       redirect_to project_memberships_path(@project), notice: "#{@membership.user.first_name} was successfully updated"
@@ -29,8 +27,18 @@ class MembershipsController < ApplicationController
     end
   end
 
+  def destroy
+    @membership = Membership.find(params[:id])
+    @membership.destroy
+    redirect_to project_memberships_path(@project), notice: 'Membership was successfully destroyed.'
+  end
+
   def membership_params
     params.require(:membership).permit(:user_id, :project_id, :role)
+  end
+
+  def set_project
+    @project = Project.find(params[:project_id])
   end
 
 end
