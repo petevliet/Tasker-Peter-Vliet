@@ -1,0 +1,11 @@
+<div class= "well form-inline">
+<%= form_for [@project, @membership] do |f| %>
+  <div class="form-group">
+    <%= f.collection_select :user_id, User.all, :id, :fullname, {include_blank: 'Please select a user...'}, {class: "form-control"} %>
+  </div>
+  <div class="form-group">
+    <%= f.select :role, Membership.roles.keys.map {|role| [role.titleize,role]}, {include_blank: false}, {class: "form-control"} %>
+  </div>
+    <button type="submit" class="btn btn-primary">Add New Member</button>
+  <% end %>
+</div>

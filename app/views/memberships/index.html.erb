@@ -14,29 +14,8 @@
   </li>
 </ol>
 
-<div class= "well form-inline">
+<%= render 'membership_errors_form' %>
+<br>
+<%= render 'new_membership_form' %>
 
-<%= form_for [@project, @membership] do |f| %>
-  <div class="form-group">
-    <%= f.collection_select :user_id, User.all, :id, :fullname, {include_blank: 'Please select a user...'}, {class: "form-control"} %>
-  </div>
-  <div class="form-group">
-    <%= f.select :role, Membership.roles.keys.map {|role| [role.titleize,role]}, {include_blank: false}, {class: "form-control"} %>
-  </div>
-    <button type="submit" class="btn btn-primary">Add New Member</button>
-  <% end %>
-</div>
-
-<div class= "form-inline">
-<% @memberships.each do |membership| %>
-  <%= form_for [@project, membership] do |f| %>
-  <div class="form-group col-md-2">
-    <%= link_to membership.user.fullname, user_path(membership.user) %>
-  </div>
-  <div class="form-group col-md-2">
-    <%= f.select :role, Membership.roles.keys.map {|role| [role.titleize,role]}, {include_blank: false}, class: "form-control" %>
-  </div>
-  <%= f.submit 'Update', class: 'btn btn-sm btn-primary' %><br><br>
-  <% end %>
-<% end %>
-</div>
+<%= render 'project_memberships_form' %>

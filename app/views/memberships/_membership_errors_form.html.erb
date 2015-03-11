@@ -1,0 +1,12 @@
+<% if @membership.errors.any? %>
+<div class= "alert alert-danger">
+  <h2><strong>
+    <%= pluralize(@membership.errors.count, "error") %> prohibited this task from being saved:
+  </strong></h2>
+  <ul>
+    <% @membership.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
