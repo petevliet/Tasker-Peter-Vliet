@@ -53,9 +53,8 @@ describe 'user can CRUD tasks' do
   end
 
   it 'user can delete task' do
-
     visit '/projects/1/tasks'
-    click_on 'Delete'
+    click_link('delete_link')
 
     expect(page).to have_content('Task was successfully destroyed.')
 

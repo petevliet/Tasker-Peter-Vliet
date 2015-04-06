@@ -41,8 +41,9 @@
       <td class="text-right">
         <%= link_to 'Show', project_task_path(@project, task), class: 'btn btn-success' %>
         <%= link_to 'Edit', edit_project_task_path(@project, task), class: 'btn btn-info' %>
-        <%= link_to 'Delete', project_task_path(@project, task), class: 'btn btn-danger',
-        method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <%= link_to project_task_path(@project, task), id: 'delete_link', method: :delete do %>
+          <span class="glyphicon glyphicon-remove"></span>
+        <% end %>
       </tr>
       <% end %>
     </tbody>
