@@ -37,19 +37,20 @@
 
 <h3>Comments</h3>
 <div class="row">
-  <%= @task.comments.each do |comment| %>
+  <% @task.comments.each do |comment| %>
   <div class="col-md-3">
     <%= comment.user.fullname %>
+    <br>
+    <%= time_ago_in_words(comment.created_at) %>
   </div>
   <div class="col-md-9">
-    <%= comment.body %>
-    <% end %>
-
+    <%= comment.remark %>
   </div>
+  <% end %>
 </div>
 
 <%= form_for [@project, @task, @comment] do |f| %>
-  <%= f.text_field :body %>
+  <%= f.text_field :remark %>
   <br>
   <%= f.submit "Add Comment" %>
 <% end %>
