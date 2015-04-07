@@ -36,21 +36,28 @@
 <br>
 
 <h3>Comments</h3>
-<div class="row">
-  <% @task.comments.each do |comment| %>
-  <div class="col-md-3">
-    <%= comment.user.fullname %>
-    <br>
-    <%= time_ago_in_words(comment.created_at) %>
-  </div>
-  <div class="col-md-9">
-    <%= comment.remark %>
-  </div>
-  <% end %>
-</div>
+    <% @task.comments.each do |comment| %>
+      <div class="row">
+          <div class="col-md-3">
+            <%= link_to "#{comment.user.fullname}", user_path(comment.user) %>
+            <br>
+            <p class="text-muted">
+              <%= time_ago_in_words(comment.created_at) %>
+            </p>
+          </div>
+          <div class="col-md-9">
+            <%= comment.remark %>
+          </div>
+      </div>
+<br>
+    <% end %>
+
+<br>
 
 <%= form_for [@project, @task, @comment] do |f| %>
-  <%= f.text_field :remark %>
-  <br>
-  <%= f.submit "Add Comment" %>
+  <div class="col-md-9 col-md-offset-3">
+      <%= f.text_area :remark, rows: 5, cols: 90 %>
+      <br>
+      <%= f.submit "Add Comment", class: "btn btn-primary" %>
+    </div>
 <% end %>
