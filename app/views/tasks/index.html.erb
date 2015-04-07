@@ -30,7 +30,10 @@
   <tbody>
     <% @tasks.each do |task| %>
     <tr>
-      <td><%= "#{task.description}" %></td>
+      <td>
+        <%= link_to "#{task.description}", project_task_path(@project, task) %>
+          <span class="badge"><%= "#{task.comments.count}" %></span>
+      </td>
       <td>
         <%= task.complete %>
         <% if task.complete == nil %>
@@ -39,7 +42,6 @@
       </td>
       <td><%= task.due_date.strftime("%m/%d/%Y") %></td>
       <td class="text-right">
-        <%= link_to 'Show', project_task_path(@project, task), class: 'btn btn-success' %>
         <%= link_to 'Edit', edit_project_task_path(@project, task), class: 'btn btn-info' %>
         <%= link_to project_task_path(@project, task), id: 'delete_link', method: :delete do %>
           <span class="glyphicon glyphicon-remove"></span>
