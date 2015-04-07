@@ -18,3 +18,10 @@
       infuses every feature of gCamp.</p>
   </div>
 </div>
+
+<div class= "row">
+  <h4>
+    <p>gCamp is extremely active. Check out our killer stats below!</p>
+    <p><%= "#{pluralize(@projects, 'Project')}, #{pluralize(@tasks, 'Task')}, #{pluralize(@memberships, 'Project Member')}, #{pluralize(@users, 'User')}, #{pluralize(@comments, 'Comment')}" %></p>
+  </h4>
+</div>
