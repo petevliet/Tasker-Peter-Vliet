@@ -12,6 +12,7 @@ class CommentsController < ApplicationController
     @comment = Comment.new(params.require(:comment).permit(:user_id, :task_id, :remark))
     @comment.user_id = current_user.id
     @comment.task_id = @task.id
+    @comment.save
     redirect_to project_task_path(@project, @task)
   end
 
