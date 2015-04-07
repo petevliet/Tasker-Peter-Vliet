@@ -1,12 +1,11 @@
 class RegistrationsController < ApplicationController
 
   def new
-    @user = Registration.new
+    @user = User.new
   end
 
   def create
-    @user = Registration.new(registration_params)
-
+    @user = User.new(registration_params)
     if @user.save
       session[:registration_id] = @user.id
       redirect_to new_project_path, notice: 'New account!'
@@ -17,6 +16,6 @@ class RegistrationsController < ApplicationController
 
   private
   def registration_params
-    params.require(:registration).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
   end
 end

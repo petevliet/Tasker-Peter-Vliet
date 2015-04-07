@@ -22,7 +22,12 @@ class ProjectsController < ApplicationController
     @project = Project.new(project_params)
 
     if @project.save
-      redirect_to @project, notice: 'Project was successfully created.'
+      @membership = Membership.new
+        @membership.user_id = current_user.id
+        @membership.project_id = @project.id
+        @membership.role = 1
+        @membership.save
+      redirect_to project_tasks_path(@project), notice: 'Project was successfully created.'
     else
       render :new
     end
@@ -52,6 +57,10 @@ class ProjectsController < ApplicationController
 
     def project_params
       params.require(:project).permit(:name)
+    end
+
+    def membership_params
+      params.require(:membership).permit(:user_id, :project_id, :role)
     end
 
 end
