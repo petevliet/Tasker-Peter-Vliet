@@ -9,7 +9,7 @@ class RegistrationsController < ApplicationController
 
     if @user.save
       session[:registration_id] = @user.id
-      redirect_to root_path, notice: 'New account!'
+      redirect_to new_project_path, notice: 'New account!'
     else
       render :new
     end

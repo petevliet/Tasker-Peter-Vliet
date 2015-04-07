@@ -34,7 +34,7 @@ describe 'user can CRUD tasks' do
 
     visit '/projects/1/tasks'
 
-    click_on 'Show'
+    click_on 'example-old'
 
     expect(page).to have_content('Due')
 

@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     @user = Registration.find_by(email:params[:email])
     if @user && @user.authenticate(params[:password])
       session[:registration_id] = @user.id
-      redirect_to '/', notice: 'Welcome!'
+      redirect_to '/projects', notice: 'Welcome!'
     else
       flash[:alert] = 'Username / password combination is invalid. <br>'.html_safe
       render :new
