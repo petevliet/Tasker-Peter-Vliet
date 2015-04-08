@@ -17,6 +17,14 @@ class ApplicationController < ActionController::Base
       flash[:alert]= 'You must be logged in to view this page'
     end
   end
-  
+
+  def member_of?
+    @project = Project.find(params[:id])
+    unless @project.memberships.where(user_id: current_user.id) != []
+      redirect_to projects_path
+      flash[:notice]= 'You do not have access to that project'
+    end
+  end
+
   helper_method :current_user
 end

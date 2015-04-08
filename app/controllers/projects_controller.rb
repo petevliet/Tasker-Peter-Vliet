@@ -1,6 +1,7 @@
 class ProjectsController < ApplicationController
 
   before_action :authenticate
+  before_action :member_of?, except: [:index, :new, :create]
 
   def index
     @memberships = Membership.where(user_id: current_user.id)
