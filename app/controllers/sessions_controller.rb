@@ -1,13 +1,13 @@
 class SessionsController < ApplicationController
 
   def signin
-    @user = Registration.find_by(email:params[:email])
+    @user = User.find_by(email:params[:email])
   end
 
   def create
-    @user = Registration.find_by(email:params[:email])
+    @user = User.find_by(email:params[:email])
     if @user && @user.authenticate(params[:password])
-      session[:registration_id] = @user.id
+      session[:user_id] = @user.id
       redirect_to '/projects', notice: 'Welcome!'
     else
       flash[:alert] = 'Username / password combination is invalid. <br>'.html_safe

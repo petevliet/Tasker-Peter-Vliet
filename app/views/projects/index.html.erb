@@ -13,10 +13,10 @@
     </tr>
   </thead>
   <tbody>
-    <% @projects.each do |project| %>
+    <% @memberships.each do |membership| %>
       <tr>
-        <td><%= link_to project.name, project %> </td>
-        <td><%= link_to project.tasks.count, project_tasks_path(project) %></td>
+        <td><%= link_to membership.project.name, membership.project %> </td>
+        <td><%= link_to membership.project.tasks.count, project_tasks_path(membership.project) %></td>
       </tr>
     <% end %>
   </tbody>

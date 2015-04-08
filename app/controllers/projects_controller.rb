@@ -3,7 +3,8 @@ class ProjectsController < ApplicationController
   before_action :authenticate
 
   def index
-    @projects = Project.all
+    @memberships = Membership.where(user_id: current_user.id)
+    # @projects = Project.where(id: memberships.project_id)
   end
 
   def show

@@ -5,8 +5,8 @@ class ApplicationController < ActionController::Base
 
   def current_user
 
-    if session[:registration_id]
-      @current_user ||= Registration.find(session[:registration_id])
+    if session[:user_id]
+      @current_user ||= User.find(session[:user_id])
     end
 
   end
