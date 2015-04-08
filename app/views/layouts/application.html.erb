@@ -85,7 +85,11 @@
 <div class= "container">
   <hr>
   <div class="row">
-    <div class="col-md-6">
+    <% if current_user %>
+      <div class="text-center">
+    <% else %>
+      <div class="col-md-6">
+    <% end %>
       <%= link_to "About", about_path %>
       |
       <%= link_to "Terms", terms_path %>
@@ -96,12 +100,14 @@
       |
       <%= link_to "Projects", projects_path %>
     </div>
+    <% unless current_user %>
     <div class="col-md-6 text-right">
         <%= link_to image_tag('linkedin.jpg', class: "img-footer"), "https://www.linkedin.com/in/petervliet" %>
         <%= link_to image_tag('github.png', class: "img-footer"), "https://github.com/petevliet"  %>
         <%= link_to image_tag('twitter.png', class: "img-footer"), "https://twitter.com/Pete_Vliet" %>
         <%= link_to image_tag('galvanize.png', class: "img-footer"), "https://students.gschool.it/students/218" %>
     </div>
+    <% end %>
   </div>
 </div>
 </footer>
