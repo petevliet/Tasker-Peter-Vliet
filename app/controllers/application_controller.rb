@@ -17,7 +17,6 @@ class ApplicationController < ActionController::Base
       flash[:alert]= 'You must be logged in to view this page'
     end
   end
-
-
+  
   helper_method :current_user
 end

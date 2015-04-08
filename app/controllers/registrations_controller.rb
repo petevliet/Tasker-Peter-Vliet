@@ -7,7 +7,7 @@ class RegistrationsController < ApplicationController
   def create
     @user = User.new(registration_params)
     if @user.save
-      session[:registration_id] = @user.id
+      session[:user_id] = @user.id
       redirect_to new_project_path, notice: 'New account!'
     else
       render :new

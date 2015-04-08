@@ -4,11 +4,11 @@ describe 'user can CRUD tasks' do
 
   before :each do
     visit '/signup'
-      fill_in 'registration[first_name]', with: 'joe'
-      fill_in 'registration[last_name]', with: 'camel'
-      fill_in 'registration[email]', with: 'joe@camel.com'
-      fill_in 'registration[password]', with: 'password'
-      fill_in 'registration[password_confirmation]', with: 'password'
+      fill_in 'user[first_name]', with: 'joe'
+      fill_in 'user[last_name]', with: 'camel'
+      fill_in 'user[email]', with: 'joe@camel.com'
+      fill_in 'user[password]', with: 'password'
+      fill_in 'user[password_confirmation]', with: 'password'
       click_button 'Sign Up'
 
     Project.create(name: 'example', id: 1)
