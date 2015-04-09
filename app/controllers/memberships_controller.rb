@@ -3,6 +3,7 @@ class MembershipsController < ApplicationController
 
   before_action :set_project
   before_action :task_member_of?
+  before_action :last_owner?, only: :index
 
   def index
     @membership = Membership.new
@@ -10,6 +11,9 @@ class MembershipsController < ApplicationController
     @project = Project.find(params[:project_id])
     if @project.memberships.where(user_id: current_user.id)[0].role == "owner"
       @owner = current_user
+    end
+    if @owners_count == 1
+      @last_owner = @memberships.where(role: 1)
     end
   end
 
