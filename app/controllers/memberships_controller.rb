@@ -27,8 +27,11 @@ class MembershipsController < ApplicationController
 
   def update
     @membership = Membership.find(params[:id])
-    if @membership.update(membership_params)
-      redirect_to project_memberships_path(@project), notice: "#{@membership.user.first_name} was successfully updated"
+    owners_count = @membership.project.memberships.where(role: 1).count
+    if owners_count == 1  && @membership.role == "owner"
+      redirect_to project_memberships_path(@project), alert: "Project must have at least one owner"
+    elsif @membership.update(membership_params)
+      redirect_to project_memberships_path(@project), notice: "#{@membership.user.first_name}\'s membership was successfully updated"
     else
       render :index
     end
@@ -50,6 +53,11 @@ class MembershipsController < ApplicationController
 
   def set_project
     @project = Project.find(params[:project_id])
+  end
+
+  def last_owner?
+    @project = Project.find(params[:project_id])
+    @owners_count = @project.memberships.where(role: 1).count
   end
 
 end
