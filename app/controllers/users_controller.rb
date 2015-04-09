@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+    @this_user = User.where(id: current_user.id)
   end
 
   def show
