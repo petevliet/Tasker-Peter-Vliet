@@ -3,16 +3,11 @@ require 'rails_helper'
 describe 'user can CRUD tasks' do
 
   before :each do
-    visit '/signup'
-      fill_in 'user[first_name]', with: 'joe'
-      fill_in 'user[last_name]', with: 'camel'
-      fill_in 'user[email]', with: 'joe@camel.com'
-      fill_in 'user[password]', with: 'password'
-      fill_in 'user[password_confirmation]', with: 'password'
-      click_button 'Sign Up'
 
+    User.create(first_name: 'example', last_name: 'example', email: 'example@email.com', password: 'password', id: 14)
     Project.create(name: 'example', id: 1)
     Task.create(description: 'example-old', project_id: 1, complete: false, due_date: '2015-04-10')
+    Membership.create(user_id: 14, project_id: 1, role: 1)
   end
 
   it 'user can create a task' do

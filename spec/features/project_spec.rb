@@ -37,7 +37,7 @@ describe 'user can CRUD projects' do
 
     visit '/projects'
 
-    click_on 'example'
+    within('table') {click_on 'example'}
 
     expect(page).to have_content('example')
 
@@ -47,7 +47,7 @@ describe 'user can CRUD projects' do
 
     visit '/projects'
 
-    click_on 'example'
+    within('table') {click_on 'example'}
     click_on 'Edit'
       fill_in 'project[name]', with: 'example_new'
     click_on 'Update Project'
@@ -60,7 +60,7 @@ describe 'user can CRUD projects' do
 
     visit '/projects'
 
-    click_on 'example'
+    within('table') {click_on 'example'}
     click_on 'Delete'
 
     expect(page).to have_content('Project was successfully destroyed.')

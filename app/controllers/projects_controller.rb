@@ -2,6 +2,7 @@ class ProjectsController < ApplicationController
 
   before_action :authenticate
   before_action :member_of?, except: [:index, :new, :create]
+  before_action :owner_of?, only: [:edit, :update, :delete]
 
   def index
     @memberships = Membership.where(user_id: current_user.id)

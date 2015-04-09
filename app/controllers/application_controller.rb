@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
     @project = Project.find(params[:id])
     unless @project.memberships.where(user_id: current_user.id) != []
       redirect_to projects_path
-      flash[:notice]= 'You do not have access to that project'
+      flash[:alert]= 'You do not have access to that project'
     end
   end
 
@@ -38,7 +38,16 @@ class ApplicationController < ActionController::Base
     @project = Project.find(params[:project_id])
     unless @project.memberships.where(user_id: current_user.id) != []
       redirect_to projects_path
-      flash[:notice]= 'You do not have access to that project'
+      flash[:alert]= 'You do not have access to that project'
+    end
+  end
+
+  def owner_of?
+    @project = Project.find(params[:id])
+    user_role = @project.memberships.where(user_id: current_user.id)
+    unless user_role[0].role == "owner"
+      redirect_to project_path(@project)
+      flash[:alert]= 'You do not have access'
     end
   end
 
