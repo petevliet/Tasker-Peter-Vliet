@@ -1,4 +1,5 @@
 class ProjectsController < ApplicationController
+  layout 'current_user_layout'
 
   before_action :authenticate
   before_action :member_of?, except: [:index, :new, :create]

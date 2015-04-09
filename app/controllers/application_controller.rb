@@ -6,8 +6,8 @@ class ApplicationController < ActionController::Base
   before_action :set_memberships
 
   def set_memberships
-    if current_user != nil
-      @memberships = Membership.where(user_id: current_user.id)
+    if current_user
+      @projects = current_user.projects
     end
   end
 

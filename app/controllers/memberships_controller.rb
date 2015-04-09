@@ -1,4 +1,6 @@
 class MembershipsController < ApplicationController
+  layout 'current_user_layout'
+
   before_action :set_project
   before_action :task_member_of?
 
