@@ -1,19 +1,37 @@
-<div class= "form-inline">
-  <% @project.memberships.each do |membership| %>
-    <%= form_for [@project, membership] do |f| %>
-    <div class="form-group col-md-2">
-      <%= link_to membership.user.fullname, user_path(membership.user) %>
-    </div>
-    <div class="form-group col-md-2">
-      <%= f.select :role, Membership.roles.keys.map {|role| [role.titleize,role]}, {include_blank: false}, class: "form-control" %>
-    </div>
-      <%= f.submit 'Update', class: 'btn btn-sm btn-primary' %>
-    <div class="pull-right">
-      <%= link_to project_membership_path(@project, membership), method: :delete do %>
-        <span class="glyphicon glyphicon-remove"></span>
-      <% end %>
-    </div>
+<% if @owner %>
+  <div class= "form-inline">
+    <% @project.memberships.each do |membership| %>
+      <%= form_for [@project, membership] do |f| %>
+      <div class="form-group col-md-2">
+        <%= link_to membership.user.fullname, user_path(membership.user) %>
+      </div>
+      <div class="form-group col-md-2">
+        <%= f.select :role, Membership.roles.keys.map {|role| [role.titleize,role]}, {include_blank: false}, class: "form-control" %>
+      </div>
+        <%= f.submit 'Update', class: 'btn btn-sm btn-primary' %>
+      <div class="pull-right">
+        <%= link_to project_membership_path(@project, membership), method: :delete do %>
+          <span class="glyphicon glyphicon-remove"></span>
+        <% end %>
+      </div>
 <br><br>
+      <% end %>
     <% end %>
-  <% end %>
-</div>
+  </div>
+<% else %>
+  <table class="table table-striped">
+    <% @project.memberships.each do |membership| %>
+      <tr>
+        <td><%= link_to membership.user.fullname, user_path(membership.user) %></td>
+        <td><%=  membership.role %></td>
+        <% if membership.user == current_user %>
+          <td>
+            <%= link_to project_membership_path(@project, membership), method: :delete do %>
+              <span class="glyphicon glyphicon-remove"></span>
+            <% end %>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </table>
+<% end %>

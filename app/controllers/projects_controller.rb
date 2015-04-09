@@ -11,6 +11,9 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
+    if @project.memberships.where(user_id: current_user.id)[0].role == "owner"
+      @owner = current_user
+    end
   end
 
   def new

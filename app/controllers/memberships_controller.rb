@@ -5,6 +5,10 @@ class MembershipsController < ApplicationController
   def index
     @membership = Membership.new
     @memberships = @project.memberships.all
+    @project = Project.find(params[:project_id])
+    if @project.memberships.where(user_id: current_user.id)[0].role == "owner"
+      @owner = current_user
+    end
   end
 
   def create
@@ -31,7 +35,11 @@ class MembershipsController < ApplicationController
   def destroy
     @membership = Membership.find(params[:id])
     @membership.destroy
-    redirect_to project_memberships_path(@project), notice: 'Membership was successfully destroyed.'
+    if @membership.user == current_user
+      redirect_to projects_path(@membership.user), notice: "#{@membership.user.fullname} was successfully removed."
+    else
+      redirect_to project_memberships_path(@project), notice: "#{@membership.user.fullname} was successfully removed."
+    end
   end
 
   def membership_params
