@@ -34,5 +34,13 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def task_member_of?
+    @project = Project.find(params[:project_id])
+    unless @project.memberships.where(user_id: current_user.id) != []
+      redirect_to projects_path
+      flash[:notice]= 'You do not have access to that project'
+    end
+  end
+
   helper_method :current_user
 end

@@ -1,5 +1,6 @@
 class MembershipsController < ApplicationController
   before_action :set_project
+  before_action :task_member_of?
 
   def index
     @membership = Membership.new
