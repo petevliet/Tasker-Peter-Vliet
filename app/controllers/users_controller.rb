@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   layout 'current_user_layout'
 
+  # before_action :admin_signup, only: :create
+
   def index
     @users = User.all
   end
@@ -25,12 +27,11 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-
-      if @user.save
-        redirect_to users_path, notice: 'User was successfully created.'
-      else
-        render :new
-      end
+    if @user.save
+      redirect_to users_path, notice: 'User was successfully created.'
+    else
+      render :new
+    end
   end
 
   def update
@@ -60,7 +61,14 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :email, :password)
+      params.require(:user).permit(:first_name, :last_name, :email, :password, :admin)
+    end
+
+    def admin_signup
+      @user = User.new(user_params)
+      if @user.email == /^admin@example.com$/ && @user.password == /^password$/
+        @user.admin = true
+      end
     end
 
 end
