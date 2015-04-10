@@ -7,13 +7,16 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    if @user == current_user
+    if @user != current_user
       @this_user = @user
     end
   end
 
   def edit
     @user = User.find(params[:id])
+    if @user != current_user
+      raise AccessDenied
+    end
   end
 
   def new
@@ -42,8 +45,13 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @comments = Comment.where(user_id: @user)
-    @user.destroy
-    redirect_to users_path, notice: 'User was successfully destroyed.'
+    if @user == current_user
+      @user.destroy
+      session.destroy
+      redirect_to '/', notice: 'User successfully destroyed'
+    else
+      render :index, alert: 'You may only delete yourself'
+    end
   end
 
   private
