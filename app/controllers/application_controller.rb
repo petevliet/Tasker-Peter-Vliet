@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
 
   def member_of?
     @project = Project.find(params[:id])
-    unless @project.memberships.where(user_id: current_user.id) != []
+    unless @project.users.include?(current_user)
       redirect_to projects_path
       flash[:alert]= 'You do not have access to that project'
     end
@@ -39,7 +39,7 @@ class ApplicationController < ActionController::Base
 
   def task_member_of?
     @project = Project.find(params[:project_id])
-    unless @project.memberships.where(user_id: current_user.id) != []
+    unless @project.users.include?(current_user)
       redirect_to projects_path
       flash[:alert]= 'You do not have access to that project'
     end
