@@ -4,15 +4,14 @@ describe 'user can CRUD projects' do
 
   before :each do
 
-    visit '/signup'
-      fill_in 'user[first_name]', with: 'joe'
-      fill_in 'user[last_name]', with: 'camel'
-      fill_in 'user[email]', with: 'joe@camel.com'
-      fill_in 'user[password]', with: 'password'
-      fill_in 'user[password_confirmation]', with: 'password'
-      click_button 'Sign Up'
+    User.create(id: 1, first_name: 'joe', last_name: 'camel', email: 'joe@camel.com', password: 'password')
 
-    visit '/projects'
+    visit '/signin'
+      fill_in 'email', with: 'joe@camel.com'
+      fill_in 'password', with: 'password'
+      click_button 'Sign In'
+
+
       click_on 'New project'
       fill_in 'project[name]', with: 'example'
       click_on 'Create Project'
@@ -31,6 +30,11 @@ describe 'user can CRUD projects' do
 
     expect(page).to have_content 'example1'
 
+  end
+
+  it 'takes user to project tasks page upon project creation' do
+
+    expect(page).to have_content 'Tasks for example'
   end
 
   scenario 'user can view project show page' do

@@ -10,7 +10,7 @@
       <%= link_to 'Projects', projects_path %>
     </li>
     <li>
-      <%= link_to @project.name, project_path(@project) %>
+      <%= link_to @project.name, project_path(@project), id: 'proj' %>
     </li>
     <li><class="active">
       Tasks
