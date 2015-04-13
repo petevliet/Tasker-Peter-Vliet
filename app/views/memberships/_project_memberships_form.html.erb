@@ -28,7 +28,7 @@
       <tr>
         <td><%= link_to membership.user.fullname, user_path(membership.user) %></td>
         <td><%=  membership.role %></td>
-        <% if membership.user == current_user %>
+        <% if membership.user == current_user || current_user.admin %>
           <td>
             <%= link_to project_membership_path(@project, membership), method: :delete do %>
               <span class="glyphicon glyphicon-remove"></span>

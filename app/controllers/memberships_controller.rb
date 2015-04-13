@@ -9,7 +9,7 @@ class MembershipsController < ApplicationController
     @membership = Membership.new
     @memberships = @project.memberships.all
     @project = Project.find(params[:project_id])
-    if @project.memberships.where(user_id: current_user.id)[0].role == "owner"
+    if current_user.admin || @project.memberships.where(user_id: current_user.id)[0].role == "owner"
       @owner = current_user
     end
     if @owners_count == 1

@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   layout 'current_user_layout'
 
-  # before_action :admin_signup, only: :create
+  before_action :authenticate
 
   def index
     @users = User.all
@@ -16,7 +16,7 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
-    if @user != current_user
+    unless @user == current_user || current_user.admin
       raise AccessDenied
     end
   end
@@ -62,13 +62,6 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:first_name, :last_name, :email, :password, :admin)
-    end
-
-    def admin_signup
-      @user = User.new(user_params)
-      if @user.email == /^admin@example.com$/ && @user.password == /^password$/
-        @user.admin = true
-      end
     end
 
 end

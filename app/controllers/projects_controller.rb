@@ -3,16 +3,17 @@ class ProjectsController < ApplicationController
 
   before_action :authenticate
   before_action :member_of?, except: [:index, :new, :create]
-  before_action :owner_of?, only: [:edit, :update, :delete]
+  before_action :owner_of?, only: [:edit, :update, :destroy]
 
   def index
-    @memberships = Membership.where(user_id: current_user.id)
+      @adminprojects = Project.all
+      @memberships = Membership.where(user_id: current_user.id)
     # @projects = Project.where(id: memberships.project_id)
   end
 
   def show
     @project = Project.find(params[:id])
-    if @project.memberships.where(user_id: current_user.id)[0].role == "owner"
+    if current_user.admin || @project.memberships.where(user_id: current_user.id)[0].role == "owner"
       @owner = current_user
     end
   end

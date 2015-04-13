@@ -1,4 +1,4 @@
-<% if @owner || current_user.admin %>
+<% if @owner %>
   <div class= "well form-inline">
   <%= form_for [@project, @membership] do |f| %>
     <div class="form-group">
