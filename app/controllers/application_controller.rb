@@ -1,9 +1,9 @@
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
-  class AccessDenied < StandardError
+  class NotFound < StandardError
   end
-  rescue_from AccessDenied, with: :record_not_found
+  rescue_from NotFound, with: :record_not_found
   protect_from_forgery with: :exception
 
   before_action :set_memberships
@@ -62,7 +62,7 @@ class ApplicationController < ActionController::Base
 
   private
   def record_not_found
-    render '../../public/404', layout: false
+    render '../../public/404', status: 404, layout: false
   end
 
 
