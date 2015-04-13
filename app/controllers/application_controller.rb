@@ -62,7 +62,7 @@ class ApplicationController < ActionController::Base
 
   private
   def record_not_found
-    render 'error_statuses/404', layout: false
+    render '../../public/404', layout: false
   end
 
 
