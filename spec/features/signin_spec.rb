@@ -36,4 +36,14 @@ describe 'user can sign in successfully' do
     expect(page).to have_content('Welcome!')
   end
 
+  it 'user is redirected to projects page upon signup' do
+    visit '/signin'
+
+    fill_in 'email', with: 'joe@camel.com'
+    fill_in 'password', with: 'password'
+    click_button 'Sign In'
+
+    expect(current_path).to eq(projects_path)
+  end
+
 end

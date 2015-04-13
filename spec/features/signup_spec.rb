@@ -88,5 +88,17 @@ describe 'user can sign up successfully' do
 
     end
 
+    it 'guest is redirect to new project path upon signup' do
+      visit '/signup'
+      fill_in 'user[first_name]', with: 'example'
+      fill_in 'user[last_name]', with: 'example'
+      fill_in 'user[email]', with: 'example@example.com'
+      fill_in 'user[password]', with: 'example'
+      fill_in 'user[password_confirmation]', with: 'example'
+
+      click_button 'Sign Up'
+      expect(current_path).to eq(new_project_path)
+    end
+
 
 end
