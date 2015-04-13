@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   layout 'current_user_layout'
 
   before_action :authenticate
+  before_action :team_member?, only: [:index, :show]
 
   def index
     @users = User.all
@@ -62,6 +63,16 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:first_name, :last_name, :email, :password, :admin)
+    end
+
+    def team_member?
+      @teammates = []
+      @myprojects = current_user.projects
+      @myprojects.each do |project|
+        project.memberships.each do |membership|
+          @teammates << membership.user
+        end
+      end
     end
 
 end

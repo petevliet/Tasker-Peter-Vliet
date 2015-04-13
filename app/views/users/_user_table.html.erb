@@ -1,0 +1,25 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= link_to user.fullname, user %></td>
+        <% if @teammates.include?(user) %>
+          <td><%= mail_to "#{user.email}" %></td>
+        <% end %>
+        <% if user == current_user %>
+          <td class="text-right">
+              <%= link_to 'Edit', edit_user_path(user), class: 'btn btn-info' %>
+              <%= link_to 'Delete', user, class: 'btn btn-danger',
+              method: :delete, data: { confirm: 'Are you sure?' } %>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
