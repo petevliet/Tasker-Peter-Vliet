@@ -8,6 +8,11 @@ describe 'user can CRUD tasks' do
     Project.create(name: 'example', id: 1)
     Task.create(description: 'example-old', project_id: 1, complete: false, due_date: '2015-04-10')
     Membership.create(user_id: 14, project_id: 1, role: 1)
+
+    visit '/signin'
+    fill_in 'email', with: 'example@email.com'
+    fill_in 'password', with: 'password'
+    click_button 'Sign In'
   end
 
   it 'user can create a task' do

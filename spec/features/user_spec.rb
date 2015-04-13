@@ -2,8 +2,18 @@ require 'rails_helper'
 
 describe 'user can CRUD users' do
 
-  scenario 'user can create a user' do
+  before :each do
+    User.create(id: 10, first_name: 'joe', last_name: 'smith', email: '1234@fake.com', password: 'password')
+    visit '/signin'
+
+    fill_in 'email', with: '1234@fake.com'
+    fill_in 'password', with: 'password'
+    click_button 'Sign In'
+
     visit '/users'
+  end
+
+  scenario 'user can create a user' do
 
     click_on 'New user'
       fill_in 'user[first_name]', with: 'joe'
@@ -18,23 +28,17 @@ describe 'user can CRUD users' do
   end
 
   scenario 'user can view user show page' do
-    User.create(first_name: 'joe', last_name: 'smith', email: '1234@fake.com', password: 'password')
 
-    visit '/users'
-
-    click_on 'joe smith'
+    within('table') {click_on 'joe smith'}
 
     expect(page).to have_content('joe smith')
-    expect(page).to have_content('1234@fake.com')
+    expect(current_path).to eq(user_path(10))
 
   end
 
   scenario 'user can update user information' do
-    User.create(first_name: 'joe', last_name: 'smith', email: '1234@fake.com', password: 'password')
 
-    visit '/users'
-
-    click_on 'joe smith'
+    within('table') {click_on 'joe smith'}
     click_on 'Edit'
       fill_in 'user[last_name]', with: 'jones'
       fill_in 'user[password]', with: 'password'
@@ -47,15 +51,12 @@ describe 'user can CRUD users' do
   end
 
   scenario 'user can delete users' do
-    User.create(first_name: 'joe', last_name: 'smith', email: '1234@fake.com', password: 'password')
 
-    visit '/users'
+    # within('table') {click_on 'joe smith'}
+    # click_on 'Edit'
+    click_on 'Delete'
 
-    click_on 'joe smith'
-    click_on 'Edit'
-    click_on 'Delete User'
-
-    expect(page).to have_content('User was successfully destroyed.')
+    expect(page).to have_content('User successfully destroyed')
 
   end
 
