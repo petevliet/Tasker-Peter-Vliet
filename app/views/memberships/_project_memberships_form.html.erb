@@ -11,10 +11,10 @@
         <%= f.submit 'Update', class: 'btn btn-sm btn-primary' %>
       <div class="pull-right">
         <% if @last_owner && membership.role == "owner" %>
-        You are the last owner.
+          You are the last owner.
         <% else %>
-        <%= link_to project_membership_path(@project, membership), method: :delete do %>
-          <span class="glyphicon glyphicon-remove"></span>
+          <%= link_to project_membership_path(@project, membership), method: :delete do %>
+            <span class="glyphicon glyphicon-remove"></span>
           <% end %>
         <% end %>
       </div>

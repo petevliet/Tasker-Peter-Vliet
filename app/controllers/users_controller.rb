@@ -46,11 +46,14 @@ class UsersController < ApplicationController
 
   def destroy
     @user = User.find(params[:id])
-    @comments = Comment.where(user_id: @user)
+    # @comments = Comment.where(user_id: @user)
     if @user == current_user
       @user.destroy
       session.destroy
       redirect_to '/', notice: 'User successfully destroyed'
+    elsif current_user.admin
+      @user.destroy
+      redirect_to users_path, notice: 'User was successfully destroyed'
     else
       render :index, alert: 'You may only delete yourself'
     end
@@ -67,8 +70,8 @@ class UsersController < ApplicationController
 
     def team_member?
       @teammates = []
-      @myprojects = current_user.projects
-      @myprojects.each do |project|
+      myprojects = current_user.projects
+      myprojects.each do |project|
         project.memberships.each do |membership|
           @teammates << membership.user
         end

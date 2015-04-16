@@ -54,7 +54,7 @@ class ApplicationController < ActionController::Base
   def owner_of?
     @project = Project.find(params[:id])
     user_role = @project.memberships.where(user_id: current_user.id)
-    unless user_role[0].role == "owner" || current_user.admin
+    unless  current_user.admin || user_role[0].role == "owner"
       redirect_to project_path(@project)
       flash[:alert]= 'You do not have access'
     end
