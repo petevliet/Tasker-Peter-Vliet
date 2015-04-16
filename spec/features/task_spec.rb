@@ -40,7 +40,7 @@ describe 'user can CRUD tasks' do
 
   end
 
-  it 'user can update project information' do
+  it 'user can update project_task information' do
 
     visit '/projects/1/tasks'
 
@@ -57,6 +57,22 @@ describe 'user can CRUD tasks' do
     click_link('delete_link')
 
     expect(page).to have_content('Task was successfully destroyed.')
+
+  end
+
+  it 'user can only manage tasks on projects they are members of' do
+
+    User.create(first_name: 'tony', last_name: 'montana', email: 'tony@montana.com', password: 'password', id: 15)
+    click_on 'Sign Out'
+    click_on 'Sign In'
+
+    fill_in 'email', with: 'tony@montana.com'
+    fill_in 'password', with: 'password'
+    click_button 'Sign In'
+
+    visit 'projects/1/tasks'
+
+    expect(page).to have_content('You do not have access to that project')
 
   end
 

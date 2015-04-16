@@ -46,4 +46,16 @@ describe 'user can sign in successfully' do
     expect(current_path).to eq(projects_path)
   end
 
+  it 'user redirected to page she was trying to see before signing in' do
+
+    visit '/users'
+
+    fill_in 'email', with: 'joe@camel.com'
+    fill_in 'password', with: 'password'
+    click_button 'Sign In'
+
+    expect(current_path).to eq(users_path)
+
+  end
+
 end
