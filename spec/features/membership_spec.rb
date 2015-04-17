@@ -15,7 +15,7 @@ describe 'project memberships' do
     # I had to create a project where I knew the project_id
     Project.create(id: 30, name: 'toast bread')
     Membership.create(user_id: 1, project_id: 30, role: 1)
-    Membership.create(id: 5, user_id: 3, project_id: 30, role: 0)
+    Membership.create(id: 15, user_id: 3, project_id: 30, role: 0)
     Membership.create(id: 50, user_id: 4, project_id: 30, role: 0)
 
     visit '/signin'
