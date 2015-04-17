@@ -13,10 +13,10 @@ describe 'project memberships' do
     # member2
     User.create(id: 4, first_name: 'jake', last_name: 'plummer', email: 'jake@plummer.com', password: 'password')
     # I had to create a project where I knew the project_id
-    Project.create(id: 3, name: 'toast bread')
-    Membership.create(user_id: 1, project_id: 3, role: 1)
-    Membership.create(id: 5, user_id: 3, project_id: 3, role: 0)
-    Membership.create(user_id: 4, project_id: 3, role: 0)
+    Project.create(id: 30, name: 'toast bread')
+    Membership.create(user_id: 1, project_id: 30, role: 1)
+    Membership.create(id: 5, user_id: 3, project_id: 30, role: 0)
+    Membership.create(id: 50, user_id: 4, project_id: 30, role: 0)
 
     visit '/signin'
       fill_in 'email', with: 'joe@camel.com'
@@ -44,7 +44,7 @@ describe 'project memberships' do
     fill_in 'password', with: 'password'
     click_button 'Sign In'
 
-    visit 'projects/3/memberships'
+    visit 'projects/30/memberships'
 
     expect(page).to have_content('You do not have access to that project')
   end
@@ -58,7 +58,7 @@ describe 'project memberships' do
     fill_in 'password', with: 'password'
     click_button 'Sign In'
 
-    visit '/projects/3/memberships'
+    visit '/projects/30/memberships'
 
     expect(page).to have_content('Manage Members')
     expect(page).to_not have_button('Update')
@@ -74,7 +74,7 @@ describe 'project memberships' do
     fill_in 'password', with: 'password'
     click_button 'Sign In'
 
-    visit '/projects/3/memberships'
+    visit '/projects/30/memberships'
 
     # will fail if there are multiple (ambiguous) matches
     expect(page).to have_css('span.glyphicon')
@@ -90,9 +90,9 @@ describe 'project memberships' do
     fill_in 'password', with: 'password'
     click_button 'Sign In'
 
-    visit '/projects/3/memberships'
+    visit '/projects/30/memberships'
 
-    click_link('', href: '/projects/3/memberships/5')
+    click_link('', href: '/projects/30/memberships/5')
 
     expect(page).to have_content('was successfully removed')
 

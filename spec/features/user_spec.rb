@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'user can CRUD users' do
 
   before :each do
-    User.create(id: 10, first_name: 'joe', last_name: 'smith', email: '1234@fake.com', password: 'password')
+    User.create(id: 101, first_name: 'joe', last_name: 'smith', email: '1234@fake.com', password: 'password')
     User.create(id: 5, first_name: 'jane', last_name: 'smith', email: '1111@fake.com', password: 'password')
     # admin
     User.create(id: 1, first_name: 'pete', last_name: 'vliet', email: 'pete@vliet.com', password: 'password', admin: true)
@@ -36,7 +36,7 @@ describe 'user can CRUD users' do
     within('table') {click_on 'joe smith'}
 
     expect(page).to have_content('joe smith')
-    expect(current_path).to eq(user_path(10))
+    expect(current_path).to eq(user_path(101))
 
   end
 
@@ -72,7 +72,7 @@ describe 'user can CRUD users' do
     fill_in 'password', with: 'password'
     click_button 'Sign In'
 
-    visit '/users/10/edit'
+    visit '/users/101/edit'
 
     expect(page).to have_content('The page you were looking for')
 
