@@ -92,7 +92,7 @@ describe 'project memberships' do
 
     visit '/projects/30/memberships'
 
-    click_link('', href: '/projects/30/memberships/5')
+    click_link('', href: '/projects/30/memberships/15')
 
     expect(page).to have_content('was successfully removed')
 
