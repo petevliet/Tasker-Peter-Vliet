@@ -8,7 +8,6 @@ class ProjectsController < ApplicationController
   def index
       @adminprojects = Project.all
       @memberships = Membership.where(user_id: current_user.id)
-    # @projects = Project.where(id: memberships.project_id)
   end
 
   def show
@@ -30,6 +29,7 @@ class ProjectsController < ApplicationController
     @project = Project.new(project_params)
 
     if @project.save
+      # user is made project owner upon project creation
       @membership = Membership.new
         @membership.user_id = current_user.id
         @membership.project_id = @project.id
@@ -65,10 +65,6 @@ class ProjectsController < ApplicationController
 
     def project_params
       params.require(:project).permit(:name)
-    end
-
-    def membership_params
-      params.require(:membership).permit(:user_id, :project_id, :role)
     end
 
 end
