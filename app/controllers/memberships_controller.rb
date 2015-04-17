@@ -3,13 +3,13 @@ class MembershipsController < ApplicationController
 
   before_action :set_project
   before_action :task_member_of?
-  before_action :last_owner?, only: :index
+  before_action :last_owner?, only: [:index, :update]
 
   def index
     @membership = Membership.new
     @memberships = @project.memberships.all
     @project = Project.find(params[:project_id])
-    if current_user.admin || @project.memberships.where(user_id: current_user.id)[0].role == "owner"
+    if current_user == @project.memberships.where(role: 1)[0].user
       @owner = current_user
     end
     if @owners_count == 1
@@ -31,8 +31,7 @@ class MembershipsController < ApplicationController
 
   def update
     @membership = Membership.find(params[:id])
-    owners_count = @membership.project.memberships.where(role: 1).count
-    if owners_count == 1  && @membership.role == "owner"
+    if @owners_count == 1  && @membership.role == "owner"
       redirect_to project_memberships_path(@project), alert: "Project must have at least one owner"
     elsif @membership.update(membership_params)
       redirect_to project_memberships_path(@project), notice: "#{@membership.user.first_name}\'s membership was successfully updated"

@@ -45,7 +45,7 @@ class ApplicationController < ActionController::Base
 
   def task_member_of?
     @project = Project.find(params[:project_id])
-    unless @project.users.include?(current_user) || current_user.admin?
+    unless @project.users.include?(current_user) || current_user.admin
       redirect_to projects_path
       flash[:alert]= 'You do not have access to that project'
     end
