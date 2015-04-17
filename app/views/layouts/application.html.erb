@@ -18,12 +18,13 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
+          <!-- gCamp in navbar has different endpoints if user is logged in or not -->
           <% if current_user %>
             <a class="navbar-brand" href="/projects">gCamp</a>
           <% else %>
             <a class="navbar-brand" href="/">gCamp</a>
           <% end %>
-
+          <!-- logged in user sees Projects and Users dropdowns -->
           <% if current_user %>
             <ul class="nav navbar-nav">
               <li class="dropdown">
@@ -52,6 +53,7 @@
 
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
+        <!-- logged in/out users see different options on right of navbar  -->
           <% if current_user %>
             <li> <%= link_to "#{current_user.first_name} #{current_user.last_name}", root_path %></li>
             <li> <%= link_to 'Sign Out', signout_path %></li>
