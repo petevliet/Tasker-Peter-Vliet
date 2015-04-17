@@ -1,3 +1,4 @@
+<!-- only project owners and admins will be able to change project memberships other than their own -->
 <% if current_user.admin || @owner %>
   <div class= "form-inline">
     <% @project.memberships.each do |membership| %>
@@ -22,6 +23,7 @@
       <% end %>
     <% end %>
   </div>
+<!-- project members will only get to see project roles in static text but may delete their own -->
 <% else %>
   <table class="table table-striped">
     <% @project.memberships.each do |membership| %>

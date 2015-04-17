@@ -1,3 +1,4 @@
+<!-- only admins and project members will get to create new project memberships -->
 <% if current_user.admin || @owner %>
   <div class= "well form-inline">
   <%= form_for [@project, @membership] do |f| %>
