@@ -1,5 +1,5 @@
 class RegistrationsController < ApplicationController
-
+# Registration is created upon valid entries in 'Sign Up' option, additional users may also be created by current users in users path.
   def new
     @user = User.new
   end
