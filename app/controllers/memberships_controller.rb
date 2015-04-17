@@ -9,9 +9,11 @@ class MembershipsController < ApplicationController
     @membership = Membership.new
     @memberships = @project.memberships.all
     @project = Project.find(params[:project_id])
-    if current_user == @project.memberships.where(role: 1)[0].user
+    # owner is defined if current user is project owner
+    if current_user == @project.memberships.find_by(role: 1).user
       @owner = current_user
     end
+    # project must have at least one owner
     if @owners_count == 1
       @last_owner = @memberships.where(role: 1)
     end
@@ -31,7 +33,7 @@ class MembershipsController < ApplicationController
 
   def update
     @membership = Membership.find(params[:id])
-    if @owners_count == 1  && @membership.role == "owner"
+    if @owners_count == 1 && @membership.role == "owner"
       redirect_to project_memberships_path(@project), alert: "Project must have at least one owner"
     elsif @membership.update(membership_params)
       redirect_to project_memberships_path(@project), notice: "#{@membership.user.first_name}\'s membership was successfully updated"
@@ -43,6 +45,7 @@ class MembershipsController < ApplicationController
   def destroy
     @membership = Membership.find(params[:id])
     @membership.destroy
+    # different redirect paths if destroyer is current user or admin
     if @membership.user == current_user
       redirect_to projects_path(@membership.user), notice: "#{@membership.user.fullname} was successfully removed."
     else
@@ -58,6 +61,7 @@ class MembershipsController < ApplicationController
     @project = Project.find(params[:project_id])
   end
 
+  # projects must have at least one owner, this is owners count calculated here.
   def last_owner?
     @project = Project.find(params[:project_id])
     @owners_count = @project.memberships.where(role: 1).count
