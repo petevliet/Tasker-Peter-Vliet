@@ -1,11 +1,14 @@
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
+  protect_from_forgery with: :exception
+
+  # This error will be raised when non-admin users try to access another user's edit page
   class NotFound < StandardError
   end
   rescue_from NotFound, with: :record_not_found
-  protect_from_forgery with: :exception
 
+  # set_memberships determines what projects will show in users' Project dropdown & Project#index
   before_action :set_memberships
 
   def set_memberships
@@ -23,6 +26,7 @@ class ApplicationController < ActionController::Base
 
   end
 
+  # stores page user was trying to access before logging in
   def store_location
     session[:return_to] = request.url
   end
@@ -35,6 +39,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # non-admin users can access projects, tasks, and memberships only if they are members of a project, this and task_member_of could use combining and refactoring
   def member_of?
     @project = Project.find(params[:id])
     unless @project.users.include?(current_user) || current_user.admin
@@ -53,8 +58,8 @@ class ApplicationController < ActionController::Base
 
   def owner_of?
     @project = Project.find(params[:id])
-    user_role = @project.memberships.where(user_id: current_user.id)
-    unless  current_user.admin || user_role[0].role == "owner"
+    user_role = @project.memberships.find_by(user_id: current_user.id).role
+    unless  current_user.admin || user_role == "owner"
       redirect_to project_path(@project)
       flash[:alert]= 'You do not have access'
     end
