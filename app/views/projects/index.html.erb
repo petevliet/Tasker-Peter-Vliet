@@ -5,6 +5,7 @@
   <h1>Projects</h1>
 </div>
 
+<!-- admins see all projects, other users only see their own -->
 <% if current_user.admin? %>
   <%= render 'admin_table' %>
 <% else %>

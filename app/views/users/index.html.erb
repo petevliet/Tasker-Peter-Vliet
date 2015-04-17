@@ -5,6 +5,7 @@
   <h1>Users</h1>
 </div>
 
+<!-- admins see edit/delete options and emails for all users, users only see emails of themselves and fellow project members -->
 <% if current_user.admin %>
   <%= render 'admin_table' %>
 <% else %>

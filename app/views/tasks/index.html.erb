@@ -2,9 +2,8 @@
   <div class="pull-right">
     <%= link_to 'New Task', new_project_task_path(@project), class: 'btn btn-info' %>
   </div>
-  <h1>Tasks for <%= @project.name %> </h1>
+  <h1>Tasks for <%= @project.name %></h1>
   <br>
-
   <ol class="breadcrumb">
     <li>
       <%= link_to 'Projects', projects_path %>
@@ -37,7 +36,7 @@
       <td>
         <%= task.complete %>
         <% if task.complete == nil %>
-        <%= false %>
+          <%= false %>
         <% end %>
       </td>
       <td><%= task.due_date.strftime("%m/%d/%Y") %></td>

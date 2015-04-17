@@ -1,5 +1,7 @@
 <%= form_for [@project, @task], html: {class: 'form-horizontal'} do |f| %>
+
   <%= render partial: 'shared/errors', locals: {object: @task} %>
+
     <div class="form-group">
       <label class= "control-label col-md-2">
         <%= f.label :description %>
@@ -8,6 +10,7 @@
         <%= f.text_field :description, class: 'form-control' %>
       </div>
     </div>
+
     <div class= "form-group">
       <label class="control-label col-md-2">
         <%= f.label :due_date %>
@@ -17,7 +20,8 @@
       </div>
     </div>
 
-    <% if @task.description != nil %>
+    <!-- checkbox will only show on tasks being edited -->
+    <% if @task.description %>
     <div class= "form-group">
       <label class= "control-label col-md-2">
         Complete
