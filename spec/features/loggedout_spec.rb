@@ -6,9 +6,9 @@ describe 'logged out users cannot see marketing pages' do
     Project.create(id: 1, name: 'testing')
   end
 
-  it 'gCamp link on navbar links to root path' do
+  it 'Tasker link on navbar links to root path' do
     visit '/'
-    click_on 'gCamp'
+    click_on 'Tasker'
     expect(current_path).to eq(root_path)
   end
 

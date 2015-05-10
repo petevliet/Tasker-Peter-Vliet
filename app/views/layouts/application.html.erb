@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Peter Vliet gCamp</title>
+  <title>Peter Vliet Tasker</title>
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
   <%= favicon_link_tag 'favicon.ico' %>
 </head>
 <body>
-<!-- for gCamp marketing pages -->
+<!-- for Tasker marketing pages -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
@@ -18,11 +18,11 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <!-- gCamp in navbar has different endpoints if user is logged in or not -->
+          <!-- Tasker in navbar has different endpoints if user is logged in or not -->
           <% if current_user %>
-            <a class="navbar-brand" href="/projects">gCamp</a>
+            <a class="navbar-brand" href="/projects">Tasker</a>
           <% else %>
-            <a class="navbar-brand" href="/">gCamp</a>
+            <a class="navbar-brand" href="/">Tasker</a>
           <% end %>
           <!-- logged in user sees Projects and Users dropdowns -->
           <% if current_user %>

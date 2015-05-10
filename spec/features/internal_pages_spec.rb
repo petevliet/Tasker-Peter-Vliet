@@ -14,8 +14,8 @@ describe 'internal pages have a different layout than marketing pages' do
     click_button 'Sign In'
   end
 
-  it 'gCamp on navbar links to projects for signed in users' do
-    click_on 'gCamp'
+  it 'Tasker on navbar links to projects for signed in users' do
+    click_on 'Tasker'
     expect(current_path).to eq(projects_path)
   end
 
